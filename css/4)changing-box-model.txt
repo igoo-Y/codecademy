@@ -1,0 +1,40 @@
+CHANGING THE BOX MODE
+    
+    box model 을 변경하는 이유
+        박스 모델의 테두리 두께와 패딩이 박스의 크기에 영향을 줌. 이는 박스 모델의 정확한 사이즈를 만들기 어렵게 하고 배치와 관리에 문제를 일으킴.
+    
+    Box Model: Content-Box
+        css 에서 box-sizing 속성은 웹 페이지를 불러올 때 브라우저가 사용해야 하는 box model 의 타입을 컨트롤함.
+        이때 디폴트 값은 content-box 이고 이는 박스 모델이 테두리의 두께와 패딩의 영향을 받는 것과 같음.
+
+    Box Model: Border-Box
+        우리는 전체 박스 모델을 리셋하고 border-box 라는 새로운 것으로 구체화할 수 있음.
+
+        * {
+            box-sizing: border-box;
+        }
+
+        이 코드는 모든 html 요소들에서 박스 모델을 border-box로 리셋함.
+        이는 앞에서 말한 박스모델의 치수에 관한 이슈를 피할 수 있음.
+
+        * {
+            box-sizing: border-box;
+        }
+        
+        h1 {
+            border: 1px solid black;
+            height: 200px;
+            width: 300px;
+            padding: 10px;
+        }
+
+        위 예시에서 박스모델의 높이는 200px, 너비는 300px 임. 그 이유는 테두리 두께와 패딩이 박스의 '안쪽'에 들어오기 때문.
+
+    The New Box Model
+        * {
+            box-sizing: border-box;
+        }
+
+        * 은 전체 선택자(웹 페이지의 모든 요소에 적용됨)
+
+    

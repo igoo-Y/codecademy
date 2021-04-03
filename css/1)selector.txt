@@ -1,0 +1,151 @@
+CSS: Csdcading Style Sheets.
+    HTML을 꾸며주는 언어.
+
+    Inline Styles
+        css 는 html 요소 안에서 style 속성을 추가해 바로 작성할 수 있음.
+
+        <p style="color: red; font-size: 20px;">I'm learning to code!</p>
+
+    The <style> Tag
+        인라인 스타일로 꾸미면, 모든 태그에 스타일 속성을 넣어서 꾸며야 하는 단점이 있음.
+        그런데 <style> 태그를 하용하면 해당 페이지 전체에서 적용할 수 있음. 즉, 굳이 <body> 안의 각각의 태그에 style 속성을 부여하지 않아도 적용가능.
+        이때, <style> 태그는 <head> 태그 안에 작성해야만 함.
+
+        <head>
+            <style>
+                p {
+                color: red;
+                font-size: 20px;
+                }
+            </style>
+        </head>
+
+    The .css file
+        개발자들은 HTML 코드와 CSS 코드가 섞여 잇는 것을 싫어함. (가독성과 유지 가능성이 떨어지기 때문)
+        그래서 style.css 와 같은 CSS 파일을 만들어서 CSS 코드를 따로 작성함.
+
+        즉, 구조를 만드는 HTML과 스타일링하는 CSS 를 각각 다른 파일에 작성하는 것.
+
+    Linking the CSS File
+        파일을 분리했지만, 그렇다고 적용이 되는 것은 아님.
+        HTML과 CSS 를 연결해야 하는데 이때, <link> 요소를 사용. (이 링크는 <head> 안에 있어야 함!)
+
+        <link href="https://www.codecademy.com/stylesheets/style.css" type="text/css" rel="stylesheet">
+
+        href 는 css 파일의 주고, 경로를 정함.
+        type 은 링크하는 문서의 타입을 알려줌. 이때 value 로 text/css 라고 지정해야 함.
+        rel 은 html 과 css 의 관계를 알려주는 속성. stylesheet와 연결하기 때문에 value 로 stylesheet 라고 지정.
+
+        만약 html 파일과 css 파일이 같은 디렉토리 안에 있다면 relative path 를 사용해 아래와 같이 작성할 수 있음. 이게 가장 일반적인 방법.
+
+        <link href="./style.css" type="text/css" rel="stylesheet">
+
+    Tag Name
+         css 는 요소의 태그 이름을 사용해 html 요소를 선택할 수 있음. 태그 이름은 <> 사이에 있는 것.
+
+         p {
+            font-family: Arial;
+        }
+
+        이런 식으로 tag name { } 하고 { } 사이에 css property 가 들어감.
+
+    Class Name
+        css 는 tag name 뿐만 아니라 class name 을 선택할 수 있음.
+
+        <p class="brand">Sole Shoe Company</p>
+
+        .brand {
+ 
+        }   
+
+        이렇게 해당 태그에 클래스를 지정하고, .class name 으로 css 코드를 작성함.
+
+    Multiple Classes
+        하나 이상의 class name을 추가할 수 있고, 이것들을 css 에서 선택할 수 있음.
+
+        <h1 class="green bold"> ... </h1>
+
+        .green {
+            color: green;
+        }
+        
+        .bold {
+            font-weight: bold;
+        }
+
+    ID Name
+        클래스에 상관없이 요소만 스타일링하려면 id 를 추가해서 사용하면 됨.
+
+        <h1 id="large-title"> ... </h1>
+
+        #large-title {
+ 
+        }
+
+    Classes and IDs
+        css 는 tag, class, id 를 선택할 수 있음.
+        상황과 목적에 맞게 사용하면 됨.
+
+    Specificity
+        특정은 브라우저가 표시할 css 스타일을 결정하는 순서.
+        가장 좋은 방법은 요소들을 가장 낮은 수준의 Specificity로 스타일링하는 것. 그렇게 하면 새롭게 스타일링할 때 덮어쓰기 좋음.
+    
+        id 가 가장 specific 한 선택자이므로 태그, 클래스 선택자를 모두 덮어쓰고, 자신의 스타일링을 보여줌.
+
+        수정하기 쉽게 스타일링하는 것은 가능한 tag 선택자를 이용하는 것이고 그렇지 않으면 class 선택자를 그리고 id 선택자를 추가하는 것임.
+
+    Chaining Selectors
+        html 에서 한번에 두 개 이상의 css 선택자를 사용할 수 있음. tag, class, id
+
+        h1.special {
+ 
+        }
+
+    Nested Elements
+        다른 요소에 nested 된 요소를 선택할 수 있음.
+
+        <ul class='main-list'>
+            <li> ... </li>
+            <li> ... </li>
+            <li> ... </li>
+        </ul>
+
+        .main-list li {
+ 
+        }
+
+        이때 css 에서 선택한 li 태그는 html 내 모든 li 가 아니라 main-list 라는 클래스를 가진 ul 에 속한 li 태그들임.
+
+    Chaining and Specificity
+        chaining과 specificity를 동시에 할 수도 있음.
+
+        p {
+            color: blue;
+        }
+        
+        
+        .main p {
+            color: red;
+        }
+
+        여기에서 mian 클래스에 종속된 p 태그를 제외한 나머지 p 태그들은 파란색으로 나올 것.
+
+    Multiple Selectors
+        css 를 좀 더 간결하게 만들기 위해 다중 선택자를 사용할 수 있음.
+
+        h1 {
+            font-family: Georgia;
+        }
+        
+        .menu {
+            font-family: Georgia;
+        }
+
+        이렇게 작성하는 대신 아래처럼 다중 선택자로 쓸 수 있음.
+
+        h1, 
+        .menu {
+            font-family: Georgia;
+        }
+
+    

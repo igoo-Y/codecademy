@@ -1,0 +1,55 @@
+CSS COLOR
+
+    Foreground vs Background
+        색상은 foreground 와 background 두 종류가 있음.
+            foreground: 요소에 나타나는 색상. color
+            background: 배경색. background-color
+
+        h1 {
+            color: Red;
+            background-color: Blue;
+        }
+
+        background 는 전체 배경색이 아니라 요소의 영역의 배경색.
+
+
+    Hexadecimal(16진법)
+        색 표현법의 하나.
+
+        DarkSeaGreen: #8FBC8F
+        Sienna:       #A0522D
+        SaddleBrown:  #8B4513
+        Brown:        #A52A2A
+        Black:        #000000 or #000
+        White:        #FFFFFF or #FFF
+        Aqua:         #00FFFF or #0FF
+
+    RGB Colors
+        RGB 로 표현할 수도 있음. Red, Green, Blue
+
+        h1 {
+            color: rgb(23, 45, 23);
+        }
+
+        각 색상구성요소는 0~255의 숫자 값을 지님.
+
+    Hex and RGB
+        Hexadecimal 과 RGB 를 사용하면 css 의 기본 색상 세팅 값보다 많은 색상 표현이 가능.
+
+    HSL. Hue, Saturation, and Lightness(색조, 채도, 명도)
+        color: hsl(120, 60%, 70%); 에서 첫번째 숫자는 색조, 0~360 사이. 두번째, 세번째 숫자는 채도와 명도의 정도.
+
+        채도는 색의 진하고 옅은 정도. 
+
+    Opacity and Alpha
+        불투명도
+
+        HSL 표기 시 
+            color: hsla(34, 100%, 50%, 0.1);
+
+            hsl 이 아니라 hsla 라 쓰고, 4번째에 불투명도 입력. 여기서 a 가 알파.
+
+        RGB 표시 시
+            color: rgba(234, 45, 98, 0.33);
+
+            color: rgba(0, 0, 0, 0) 와 color: transparent; 는 같음.

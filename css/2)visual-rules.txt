@@ -1,0 +1,94 @@
+CSS VISUAL RULES
+
+    CSS Structure
+        html 요소를 스타일링 하기 위해서는 css declaration을 작성해야 함.
+
+        property 는 내가 요소에서 꾸미고자 하는 것. ex) size, color 등
+        value 는 property의 값 ex) 18px for size, blue for color 등
+
+
+    Font Family
+        폰트 변경 시 font family property 를 사용
+
+        h1 {
+            font-family: Garamond;
+        }
+
+        주의점
+            사용자가 웹 페이지 방문 시 해당 글꼴을 표시하려면 스타일시트에 있는 글꼴이 사용자 컴퓨터에 설치되어 있어야 함.
+            디폴트 값은 Times New Roman
+            2~3가지의 폰트를 사용하는 것이 좋은 디자인이고 로딩 속도에도 문제가 없음.
+            폰트 이름이 하나 이상의 단어로 되어 있으면 따옴표""로 넣어주면 됨.
+
+    Font Size
+        폰트 사이즈를 변경하는 방법
+
+        p {
+            font-size: 18px;
+        }
+
+    Font Weight
+        폰트 굵기 변경
+
+        p {
+            font-weight: bold;
+        }
+
+        종류: bold, normal
+
+    Text Align
+        텍스트 정렬하기
+
+        h1 {
+            text-align: right;
+        }
+
+        종류: left, center, right
+
+    Color
+        color 구분에는 두 가지가 있음
+            foreground color: 요소에 나타나는 색상.
+            background color: 배경색
+
+            css 에서 각각의 property 는 color 와 background-color
+
+            h1 {
+                color: red;
+                background-color: blue;
+            }
+
+    Opacity
+        불투명도 0~1, 0~100% 로 표현. 1 또는 100% 는 완벽히 보임. 0 또는 0% 는 보이지 않음.
+
+        .overlay {
+            opacity: 0.5;
+        }
+
+    Background Image
+        배경 이미지 넣기 background-image property 사용.
+
+        .main-banner {
+            background-image: url("https://www.example.com/image.jpg");
+        }
+
+        background-image는 이미지를 넣고 싶은 요소 안에 들어가야 하고, url 을 넣어줘야 함.
+
+        .main-banner {
+            background-image: url("images/mountains.jpg");
+        }
+
+        이런 식으로도 작성 가능함.
+
+    Important
+        !important 라고 작성하면 나머지를 모두 무시함.
+
+        p {
+            color: blue !important;
+        }
+        
+        
+        .main p {
+            color: red;
+        }
+
+        이 경우에 .mian p 선택자가 red 로 지정했다고 해도, 모든 p 요소는 blue로 나타남.
