@@ -1,0 +1,212 @@
+ADVANCED CSS GRID
+    grid 의 추가 속성
+        grid-template-areas
+        justify-items
+        justify-content
+        justify-self
+        align-items
+        align-content
+        align-self
+        grid-auto-rows
+        grid-auto-columns
+        grid-auto-flow
+
+    Grid Template Areas
+        grid-template-areas 속성을 사용하면 grid-row-start, grid-row-end, grid-col-start,grid-col-end, grid-area 속성에서 값으로 사용할 웹페이지의 섹션 이름을 지정할 수 있음.
+
+        <div class="container">
+            <header>Welcome!</header>
+            <nav>Links!</nav>
+            <section class="info">Info!</section>
+            <section class="services">Services!</section>
+            <footer>Contact us!</footer>
+        </div>
+
+        .container {
+            display: grid;
+            max-width: 900px;
+            position: relative;
+            margin: auto;
+            grid-template-areas: "head head"
+                                "nav nav" 
+                                "info services"
+                                "footer footer";
+            grid-template-rows: 300px 120px 800px 120px;
+            grid-template-columns: 1fr 3fr; 
+        }
+        
+        header {
+            grid-area: head;
+        } 
+        
+        nav {
+            grid-area: nav;
+        } 
+        
+        .info {
+            grid-area: info;
+        } 
+        
+        .services {
+            grid-area: services;
+        }
+        
+        footer {
+            grid-area: footer;
+        } 
+
+        예시처럼 코드를 보다 명확하게 볼 수 있도록 웹사이트의 섹션을 확장할 수 있음.
+
+            1. .container 의 grid-template-areas 선언은 2 열과 4행을 만듬.
+            2. grid-template-rows 선언은 각 행의 높이를 지정. 위부터 300px, 120px, 800px, 120px
+            3. grid-template-columns 선언은 fr 값을 이용해 첫번째 열이 페이지의 1/4, 두번째 열이 3/4 을 차지하도록 함.
+            4. .container 아래의 각각의 룰에서 우리는 grid-area 속성을 사용해 해당 섹션이 지정된 페이지의 부분을 포함하도록 지시함.
+                즉, header 요소는 1번 행의 두 열에 위치함. nav 요소는 2번 행의 두 열에 위치. .info 요소는 3번 행의 왼쪽 열에 위치. .services 요소는 3번 행의 오른쪽 열에 위치. 
+                footer 요소는 맨 아래 행의 두 열에 위치.
+
+        grid-template-areas 로 그리드의 모양을 적어준다고 생각하면 됨. (각 요소의 자리를 알려줌)
+
+    Overlapping Elements
+        grid 로 쉽게 다른 요소를 덮을 수 있음.
+        일반적으로 grid line name 과 grid-area 속성을 사용하는 것이 가장 쉬움.
+
+        <div class="container">
+            <div class="info">Info!</div> 
+            <img src="#" />
+            <div class="services">Services!</div>
+        </div>
+
+        .container {
+            display: grid;
+            grid-template: repeat(8, 200px) / repeat(6, 100px);
+        }
+        
+        .info {
+            grid-area: 1 / 1 / 9 / 4;
+        }
+        
+        .services {
+            grid-area: 1 / 4 / 9 / 7;
+        }
+        
+        img {
+            grid-area: 2 / 3 / 5 / 5;
+            z-index: 5;
+        }
+
+        예시에서 grid container 는 8행과 6열임. 컨테이너 안에는 3개의 grid item 이 있음. info, services, img
+        info 영역은 8행 전부와 처음 3열을 차지. services 영역은 8행 전부와 4열부터 6열까지.
+        img 는 2,3,4번째 행과 3,4번째 열을 차지. z-index 속성은 이미지가 services 와 info 와 겹쳐도 맨 위로 올라오게 함.
+    
+    Justify Items
+        justify-items 는 인라인 또는 행 축을 따라 grid item 을 배치하는 속성. 웹페이지를 가로질러 왼쪽에서 오른쪽으로 항목을 배치.
+
+            justify-items의 value
+                start: 아이템을 그리드 영역의 왼쪽에 배치.
+                end: 아이템을 그리드 영역의 오른쪽에 배치.
+                center: 아이템을 그리드 영역의 가운데에 배치.
+                stretch: 모든 아이템을 확장해 그리드 영역을 채움.
+        
+        <main>
+            <div class="card">Card 1</div>
+            <div class="card">Card 2</div>
+            <div class="card">Card 3</div>
+        </main>
+
+        main {
+            display: grid;
+            grid-template-columns: repeat(3, 400px);
+            justify-items: center;
+        }
+
+        위 예시에서 3개의 아이템을 가진 너비 400px 짜리 그리드 컨테이너가 있음. 아이템들의 너비는 정해지지 않았음.
+        justify-items 를 설정하지 않으면, 이 요소들은 해당 컬럼의 전체를 차지함. (400px)
+        justify-items: center; 로 설정함으로써 .card div 는 그들이 속한 열의 중앙에 위치함. 그리고 요소들의 너비는 컨텐츠를 담기 위해 필요한 만큼으로 설정됨.
+        만약 .card 요소들의 너비를 정해주면 이 요소들은 열의 너비를 다 채우지 않음.
+
+    Justify Content
+        justify-content 를 사용해 컨텐츠를 전체 그리드를 행 축을 따라 배치할 수 있음.
+
+            justify-content 의 value
+                start: 그리드를 그리드 컨테이너의 왼쪽으로 배치.
+                end: 그리드를 그리드 컨테이너의 오른쪽에 배치.
+                center: 그리드를 그리드 컨테이너의 수평적으로 중앙에 배치.
+                stretch: 그리드 아이템을 늘려 그리드의 크기를 증가시키며 컨테이너를 가로로 확장
+                space-around: 그리드 요소의 각 측면에 동일한 크기의 여백을 포함하므로, 요소들 사이 여백은 첫번째 요소 이전과 마지막 요소 다음 여백의 두배가 됨.
+                space-between: 그리드 아이템 사이 동일한 여백을 갖고, 양쪽 끝에는 여백이 없음.
+                space-evenly: 그리드 아이템과 양쪽 끝 사이에 균일한 여백.
+        
+        <main>
+            <div class="left">Left</div>
+            <div class="right">Right</div>
+        </main>
+
+        main {
+            display: grid;
+            width: 1000px;
+            grid-template-columns: 300px 300px;
+            grid-template-areas: "left right"; 
+            justify-content: center;
+        }
+
+        위 예시에서 그리드 컨테이너는 1000px 이지만 300px 짜리 열 두 개만 정했음. 이는 그리드 컨테이너에 400px 의 공간이 남음.
+        justify-content: center; 로 열들은 그리드의 중앙에 위치하고 행들의 좌우에 각 200px 의 여백이 남음.
+
+    Align Items
+        align-items 는 그리드 아이템을 열(세로) 축에 따라 배치하는 방법.
+
+            align-items 의 value
+                start: 그리드 아이템을 그리드 영역의 상단에 배치.
+                end: 그리드 아이템을 그리드 영역의 하단에 배치.
+                center: 그리드 아이템을 그리드 영역의 중단에 배치.
+                stretch: 모든 아이템을 늘려 그리드 영역을 채움.
+            
+        <main>
+            <div class="card">Card 1</div>
+            <div class="card">Card 2</div>
+            <div class="card">Card 3</div>
+        </main>
+
+        main {
+            display: grid;
+            grid-template-rows: repeat(3, 400px);
+            align-items: center;
+        }
+
+        위 예시에서 높이 400px에 3개의 행을 가진 컨테이너가 있음. 이때 아이템 3개는 너비를 정하지 않았음.
+        align-items 속성을 정하지 않으면, 이 요소들은 그들이 속한 행의 높이를 채움. (400px)
+        align-items: center; 로 지정하면 .card div 는 그들이 속한 행의 수직적으로 중앙에 배치됨. 이들은 컨텐츠의 높이만큼 높아짐.
+        만약 .card 요소의 높이를 정해주면, align-items: stretch; 로 지정하더라도 행의 높이를 늘리지 않음.
+
+    Align Content
+        align-content 는 행이 열 축을 따라 또는 위에서 아래로 가도록 배치함.
+
+            align-content 의 value
+                start: 그리드를 컨테이너의 상단에 배치.
+                end: 그리드를 컨테이너의 하단에 배치.
+                center: 그리드를 그리드 컨테이너의 수직 중앙에 배치.
+                stretch: 그리드 아이템을 늘려 그리드의 크기를 증가시키며 컨테이너를 세로로 확장
+                space-around: 그리드 요소의 각 측면에 동일한 크기의 여백을 포함하므로, 요소들 사이 여백은 첫번째 요소 이전과 마지막 요소 다음 여백의 두배가 됨.
+                space-between: 그리드 아이템 사이 동일한 여백을 갖고, 양쪽 끝에는 여백이 없음.
+                space-evenly: 그리드 아이템과 양쪽 끝 사이에 균일한 여백.
+        
+        <main>
+            <div class="top">Top</div>
+            <div class="bottom">Bottom</div>
+        </main>
+
+        main {
+            display: grid;
+            height: 600px;
+            rows: 200px 200px;
+            grid-template-areas: "top"
+                                "bottom"; 
+            align-content: center;
+        }
+
+        위 예시에서 그리드 컨테이너는 높이 600px 임. 그러나 우리는 높이 200px 인 행 두개만을 지정했음. 이때 컨테이너에는 200px 이 남음.
+        align-content: center; 는 행을 그리드의 중앙에 배치함. 그리드의 상단과 하단에 각각 100px 씩 남음.
+
+        이 요소는 그리드 컨테이너에 선언되어야 함.
+
+    
