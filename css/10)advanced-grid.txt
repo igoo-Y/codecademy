@@ -209,4 +209,64 @@ ADVANCED CSS GRID
 
         이 요소는 그리드 컨테이너에 선언되어야 함.
 
+    Justify Self and Align Self
+        justify-items 과 align-items 속성은 단일 컨테이너에 포함된 모든 그리드 항목이 각각 행 축과 열 축을 따라 배치되는 방식을 지정함.
+
+        그런데 justify-self 는 행 축에 대해 개별 요소의 위치를 지정함. 이 속성은 어떤 아이템에 대해 선언된 justify-items 덮어씀.
+
+        align-self 는 열 축에 대해 개별 요소의 위치를 지정. 이 속성은 어떤 아이템에 대해 선언된 align-items 덮어씀.
+
+        아래 네 속성을 사용할 수 있음.
+            start: 그리드 아이템을 그리드 영역의 왼쪽/상단에 배치.
+            end: 그리드 아이템을 그리드 영역의 오른쪽/하단에 배치.
+            center: 그리드 아이템을 그리드 영역의 중앙에 배치.
+            stretch: 그리드 아이템을 그리드 영역 전체로 확장 (기본값)
+
+        이때, 이속성들은 그리드 아이템에 선언되어야 함.
+
+    Implicit vs. Explicit Grid
+        그리드 관련 속성들을 활용해 그리드 요소의 수량과 크기를 명시적으로 정할 수 있음. 그런데, 우리가 표시할 정보의 양을 모를 경우 어떻게 할 것인가.
+        이때 implicit gird 즉 암시적 그리드를 사용. 암시적 그리드는 css 에서 지정한 그리드에 맞는 것보다 많을 때 요소 배치에 대한 기본 동작을 결정하는 css 내장 그리드 알고리즘.
+        기본 동작은 항목은 먼제 행을 채우고 필요에 따라 새로운 행을 추가함. 새로운 그리드 행의 높이는 컨텐츠를 담을 수 있을 만큼만.
+
+    Grid Auto Rows and Grid Auto Columns
+        grid-auto-rows, grid-auto-columns: css 그리드에서 암시적 그리드를 추가할 때 그리드의 크기를 정하는 방법
+
+        grid-auto-rows 는 암시적 그리드 행의 높이.
+        grid-auto-columns 는 암시적 그리드 열의 너비
+
+        암시적 그리드의 밸류값은 grid-template 의 네 밸류값과 같음
+            pixels, percentages, fractions, repeat()
+        
+        <body>
+            <div>Part 1</div>   
+            <div>Part 2</div>
+            <div>Part 3</div>
+            <div>Part 4</div>
+            <div>Part 5</div>
+        </body>
+
+        body {
+            display: grid;
+            grid: repeat(2, 100px) / repeat(2, 150px); 
+            grid-auto-rows: 50px;
+        }
+
+        위 예시에서 5개의 div 가 있지만, section 규칙에서 우리는 두 행과 두 열만 지정했음. 즉 4개의 그리드 셀.
+        다섯번째 div 는 암시적 행에 추가되고 50px 의 높이.
+
+        만약 grid-auto-rows 를 지정하지 않으면, 행의 높이는 컨텐츠의 높이가 될 것.
+
+    Grid Auto Flow
+        암시적으로 추가된 열과 행의 크기를 세팅할 때, 그것들이 보여지는 순서를 정할 수 있음.
+
+        grid-auto-flow 는 새 요소를 행 또는 열에 추가할지 여부를 지정.
+
+        value 값
+            row: 새 요소가 왼쪽에서 오른쪽으로 행을 채우고 요소가 너무 많으면 새 행을 만듦(디폴트)
+            column: 새 요소가 상단에서 하단으로 열을 채우고 요소가 너무 많으면 새 열을 만듦.
+            dense: 만약 더 작은 요소가 추가된 경우, 그리드 레이아웃에서 구멍들을 채우는 알고리즘을 불러옴. (?)
     
+            row 와 column 을 dense 와 짝지어 사용할 수 있음. grid-auto-flow: row dense;
+
+            이 속성은 그리드 컨테이너에 선언되어야 함.
