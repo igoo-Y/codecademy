@@ -1,0 +1,70 @@
+CSS Transitions
+    css transitions 은 상태 변화의 일종.
+    시각적 상태 변화의 타이밍을 컨트롤할 수 있게 해줌.
+
+    우리는 네 가지에 대해 컨트롤할 수 있음
+        1. 어떤 css 속성이 변하는가
+        2. 변환이 얼마나 지속되는가
+        3. 변환이 시작될 때까지의 시간은 얼마인가
+        4. 변환을 가속화하는 방법은 무엇인가
+    
+
+    Duration
+        css 변환을 만들 때 생각해야 할 것 두 가지: 변환할 속성, 변환 기간
+
+        a {
+            transition-property: color;
+            transition-duration: 1s;
+        }
+
+        위 예시에서 transition-property 는 어떤 css 속성을 애니메이팅 할 것인지 결정. text color.
+        두번째 속성은 transition-duration 변환이 얼마나 걸릴 것인가. 1초.
+
+        여러 속성들이 변환될 수 있음. https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties
+            색상값(색상, 배경색), 길이(폰트 사이즈, 너비, 높이)
+        
+        시간은 초 단위나 밀리초 단위 설정 가능
+            3s, 0.75s, 500ms 디폴트 값은 0s
+        
+    Delay
+        transition-delay 는 변환이 시작되기 전 대기 시간을 설정.
+        디폴트는 0s. 딜레이 없음.
+
+        transition-property: width;
+        transition-duration: 750ms;
+        transition-delay: 250ms;
+
+        위 예시에서 변환은 너비. 1/4 초 후에 3/4 초 동안 변환됨.
+
+    Timing Function
+        transition-timing-function 은 전환 속도를 설정. 디폴트는 ease (천천히 시작해 중간에 빨라지고 다시 느려짐)
+
+        transition-timing-function 의 value
+            ease-in: 느린 시작, 급격한 가속, 갑자기 멈춤.
+            ease-out: 빠르게 시작, 천천히 느려지고 느리게 끝남.
+            ease-in-out: 천천히 시작, 중간에 빨라지며 느리게 끝남.
+            linear: 일정한 속도.
+
+    Shorthand
+        코드 축약하기.
+
+        transition-property: color;
+        transition-duration: 1.5s;
+        transition-timing-function: linear;
+        transition-delay: 0.5s;
+
+        transition: color 1.5s linear 0.5s;
+
+        위 두 코드는 같은 의미. transition 의 순서는 transition-property, transition-duration, transition-timing-function, transition-delay
+
+    Combinations
+        전환을 혼합해 사용할 수도 있음.
+
+        transition: color 1s linear, font-size 750ms ease-in 100ms;
+
+        이런 식으로 , 로 구분하고 같은 양식으로 작성.
+
+    All
+        전환하고자 하는 속성에 all 이라는 value 를 주고 모든 속성을 전환할 수 있음.
+
+        transition: all 1.5s linear 0.5s;
